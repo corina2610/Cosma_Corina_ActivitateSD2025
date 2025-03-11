@@ -1,36 +1,4 @@
 
-/////Exercitii extra 
-//
-//// 1.
-//// Sa se stocheze intr-un vector doar elementele care au un tonaj cuprins intre o anumita valoare primita ca parametru si
-//// contin un anumit char*. 
-//
-//struct Masina* adaugaAnumiteElemente(struct Masina* vector, float pragInferior, float pragSuperior, char* conditie) {
-//
-//	int (*dimensiune) = 0;
-//
-//
-//	if (vector->tonaj > pragInferior && vector->tonaj < pragSuperior && strcmp(vector->model, conditie) == 0) {
-//		for (int i = 0; i < length(vector); i++) {
-//			(*dimensiune)++;
-//		}
-//	}
-//
-//	struct Masina* vectorNou = malloc(sizeof(struct Masina) * (*dimensiune));
-//
-//	int k = 0;
-//	if (vector->tonaj > pragInferior && vector->tonaj < pragSuperior && strcmp(vector->model, conditie) == 0) {
-//		for (int i = 0; i < (*dimensiune); i++) {
-//			vectorNou[k] = vector[i];
-//			vectorNou[k].model = malloc(sizeof(char*) * (strlen(vector[i].model) + 1));
-//			strcpy_s(vectorNou[k].model, strlen(vector[i].model) + 1, vector[i].model);
-//			k++;
-//		}
-//	}
-//
-//	return vectorNou;
-//}
-
 #include<stdio.h>
 #include<malloc.h>
 
