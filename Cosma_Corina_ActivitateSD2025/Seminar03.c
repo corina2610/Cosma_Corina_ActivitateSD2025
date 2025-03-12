@@ -36,15 +36,15 @@ void afisareVectorMasini(Masina* masini, int nrMasini) {
 void adaugaMasinaInVector(Masina** masini, int* nrMasini, Masina masinaNoua) {
 	//adauga in vectorul primit o noua masina pe care o primim ca parametru
 	//ATENTIE - se modifica numarul de masini din vector;
-	Masina* aux = (Masina*)malloc(sizeof(Masina) * (*nrMasini + 1));
+	Masina* aux = (Masina*)malloc(sizeof(Masina) * ((*nrMasini) + 1));
 
-	for (int i = 0; i < nrMasini; i++) {
+	for (int i = 0; i < (*nrMasini); i++) {
 		aux[i] = (*masini)[i];
 	}
 	aux[(*nrMasini)] = masinaNoua;
-	(*nrMasini)++;
 	free(*masini);
 	(*masini) = aux;
+	(*nrMasini)++;
 
 	
 }
@@ -84,12 +84,9 @@ Masina* citireVectorMasiniFisier(const char* numeFisier, int* nrMasiniCitite) {
 	FILE* file = fopen(numeFisier, "r");
 	Masina* masini = NULL;
 
-	for (int i = 0; i < (*nrMasiniCitite); i++) {
-		do {
-			adaugaMasinaInVector(&masini,nrMasiniCitite, citireMasinaFisier(file));
-
-		} while (!feof(file));
-
+	while (!feof(file)) {
+		Masina m = citireMasinaFisier(file);
+		adaugaMasinaInVector(&masini, nrMasiniCitite, m);
 	}
 	fclose(file);
 	return masini;
@@ -99,14 +96,14 @@ Masina* citireVectorMasiniFisier(const char* numeFisier, int* nrMasiniCitite) {
 
 
 void dezalocareVectorMasini(Masina** vector, int* nrMasini) {
-	for (int i = 0; i < nrMasini; i++) {
+	for (int i = 0; i < (*nrMasini); i++) {
 		free((*vector)[i].model);
 		free((*vector)[i].numeSofer);
 
 	}
 	free(*vector);
-	*vector = NULL;
-	*nrMasini = 0;
+	(*vector) = NULL;
+	(*nrMasini) = 0;
 }
 
 float calculeazaPretMediuDupaNrUsi(Masina* vector, int nrMasini, int nrUsi) {
@@ -127,7 +124,7 @@ float calculeazaPretMediuDupaNrUsi(Masina* vector, int nrMasini, int nrUsi) {
 int main() {
 
 	Masina* masini = NULL;
-	int nrMasini;
+	int nrMasini = 0;
 
 	masini = citireVectorMasiniFisier("masini.txt", &nrMasini);
 	afisareVectorMasini(masini, nrMasini);
@@ -135,6 +132,6 @@ int main() {
 	float medie = calculeazaPretMediuDupaNrUsi("masini.txt", nrMasini, 4);
 	printf("Pretul mediu este: %.2f", medie);
 
-	/*dezalocareVectorMasini(masini, nrMasini);*/
+	dezalocareVectorMasini(masini, nrMasini);
 	return 0;
 }
