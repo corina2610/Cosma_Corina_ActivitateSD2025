@@ -127,8 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Exercitii_extra_listaDubla.c" />
+    <ClCompile Include="Exercitii_extra_listaSimpla.c" />
+    <ClCompile Include="ExtraPractice_Seminar02.c" />
+    <ClCompile Include="ExtraPractice_Seminar04.c" />
     <ClCompile Include="Seminar01.c" />
     <ClCompile Include="Seminar02.c" />
+    <ClCompile Include="Seminar03.c" />
+    <ClCompile Include="Seminar04.c" />
+    <ClCompile Include="Seminar05.c" />
+    <ClCompile Include="Taskuri_Suplimentare_1.c" />
+    <ClCompile Include="Taskuri_Suplimentare_5.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
