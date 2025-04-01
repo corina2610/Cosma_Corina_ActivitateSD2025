@@ -134,7 +134,7 @@ float calcularePretMediu(Nod* cap) {
 		return medie;
 	}
 	return 0;
-	
+
 }
 
 float calculeazaPretulMasinilorUnuiSofer(Nod* cap, const char* numeSofer) {
@@ -148,13 +148,45 @@ float calculeazaPretulMasinilorUnuiSofer(Nod* cap, const char* numeSofer) {
 	return suma;
 }
 
+
+// Implementati o functie care sterge un nod de 
+//pe o pozitie data ca parametru. Daca lista are
+//mai putine noduri decat index-ul dat,
+//nu se realizeaza stergerea. 
+void stergereNodDupaPozitie(Nod** cap, int pozitie) {
+	if ((*cap)) {
+		Nod* temp = *cap;
+		if (pozitie == 0) {
+			*cap = temp->next;
+			free(temp->info.model);
+			free(temp->info.numeSofer);
+			free(temp);
+			return;
+		}
+		Nod* aux = NULL;
+		for (int i = 0; i < pozitie; i++) {
+			aux = temp;
+			temp = temp->next;
+		}
+
+		aux->next = temp->next;
+		free(temp->info.model);
+		free(temp->info.numeSofer);
+		free(temp);
+	}
+}
+
+
 void main() {
 	Nod* cap = citireListaMasiniDinFisier("masini.txt");
 	afisareLista(cap);
 	float pretMediu = calcularePretMediu(cap);
 	printf("Pretul mediu: %.2f\n", pretMediu);
 	printf("Pretul masilior lui Gigel este de %.2f\n", calculeazaPretulMasinilorUnuiSofer(cap, "Gigel"));
+	stergereNodDupaPozitie(&cap, 1);
+	afisareLista(cap);
 	dezalocare(cap);
+
 }
 
 
